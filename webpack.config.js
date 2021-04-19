@@ -4,11 +4,14 @@ const plugins = require('./config/plugins')
 const devServer = require('./config/devServer')
 const publicPath = 'http://localhost:3000/'
 const {NODE_ENV} = process.env
-const filename =  NODE_ENV === 'development'? 'index.js' :'index.[contenthash].js'
+const filename =  NODE_ENV === 'development'? '[name].js' :'[name].[contenthash].js'
 
 
 const webpackConfig = {
-  entry: "./src/index",
+  entry:{
+    index: './src/index.js',
+    outro: './src/outro.js'
+  },
   mode: NODE_ENV === 'production' ? 'development' : 'development',
   output: {
     filename,
